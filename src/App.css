@@ -7,17 +7,17 @@ img.center {
   margin: 0 auto;
 }
 
-footer{
+footer {
   margin-bottom: -100px;
   margin-top: 20px;
   display: flex;
   align-items: flex-end;
 }
-#body_main{
+#body_main {
   margin-bottom: -125px;
   margin-top: -20px;
 }
-#misis{
+#misis {
   width: 100px;
   margin-left: 25px;
   margin-bottom: 25px;
@@ -30,19 +30,19 @@ footer{
   justify-content: center;
 }
 
-.main{ background-color: #ddd;}
+.main {
+  background-color: #ddd;
+}
 .left {
-  border:1px solid black;
-    display: table-cell;
-    margin: 0 auto;
+  border: 1px solid black;
+  display: table-cell;
+  margin: 0 auto;
 }
 .middle {
-
-    display: table-cell;
+  display: table-cell;
 }
 .right {
-
-    display: table-cell;
+  display: table-cell;
 }
 
 .item {
@@ -52,7 +52,7 @@ footer{
   height: 250px;
   width: 100%;
   color: #fff;
-  background-color: #00008B;
+  background-color: #00008b;
   margin: 0 15px;
   font-size: 200%;
 }
