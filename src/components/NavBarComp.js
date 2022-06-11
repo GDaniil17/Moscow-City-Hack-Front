@@ -7,13 +7,15 @@ import {
   Button,
   Container,
 } from "react-bootstrap";
+import "./NavBarComp.css";
+import { BsSearch } from "react-icons/bs";
 
 export default function NavBarComp() {
   return (
     <div>
-      <Navbar bg="dark" variant={"dark"} expand="lg">
+      <Navbar bg="#4C6FFF" variant={"dark"} expand="lg" style={{background: "#4C6FFF",fontSize: "20px", fontFamily: "Nunito",color:"white",}}>
         <Container fluid>
-          <Navbar.Brand href="#">Импортозамещение, фирмы Москвы</Navbar.Brand>
+          <Navbar.Brand href="#">МСП</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
@@ -22,17 +24,19 @@ export default function NavBarComp() {
               navbarScroll
             >
               <Nav.Link href="/">Главная</Nav.Link>
+              <Nav.Link href="/">Компании</Nav.Link>
               <Nav.Link href="/product">Товары</Nav.Link>
-              <Nav.Link href="/test">Личный кабинет</Nav.Link>
+              <Nav.Link href="/">О нас</Nav.Link>
             </Nav>
             <Form className="d-flex">
               <FormControl
                 type="search"
                 placeholder="Поиск"
                 className="me-2"
+
                 aria-label="Search"
               />
-              <Button variant="outline-success" onClick={(e) => console.log("Search button clicked")}>Искать</Button>
+              <Button className = "search-button" variant="outline-success" onClick={(e) => console.log("Search button clicked")}>🔍</Button>
             </Form>
           </Navbar.Collapse>
         </Container>

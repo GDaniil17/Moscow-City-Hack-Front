@@ -4,6 +4,8 @@ import ReactElasticCarousel from "react-elastic-carousel";
 import Item from "./Item";
 import React, { useState, useRef, useEffect } from "react";
 import APIHelper from "./APIHelper";
+import msp from "./imgs/msp.png";
+import "./components/NavBarComp.css";
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
@@ -67,7 +69,7 @@ const HomePage = () => {
                 key={uuidv4()}
                 style={{ backgroundImage: "url(" + urls[i] + ")" }}
               >
-                {names[i]}
+                <h1 style={{fontSize: "36px"}} class="custom-colored-h1">{names[i]}</h1>
               </Item>
             ))}
         </ReactElasticCarousel>
@@ -122,27 +124,48 @@ const HomePage = () => {
 
   return (
     <>
-      <h1 style={{ textAlign: "center" }}>Агрегатор импортозамещения</h1>
+      <img
+        id="msp"
+        src={msp}
+        style={{
+          width: "80%",
+          height: "100%",
+          display: "block",
+          margin: "0 auto",
+          resizeMode: "cover",
+        }}
+        alt=""
+      />
+      <h1 class="custom-colored-h1">Отрасли промышленности</h1>
+      <h2 style = {{width: "80%", margin: "0 auto", paddingBottom: "50px", paddingTop: "50px"}} class="description">Совокупность предприятий, занятых добычей сырья и топлива; производством энергии и орудий труда; обработкой материалов и продуктов, произведённых в промышленности или в сельском хозяйстве; изготовлением потребительских товаров. В трёхсекторной модели экономики обрабатывающая промышленность составляет вторичный сектор экономики. При этом добывающая промышленность входит в первичный сектор экономики.</h2>
 
       {itemCreator()}
+
+      <h1 class="custom-colored-h1">Товары месяца</h1>
+      <h2 style = {{width: "80%", margin: "0 auto", paddingBottom: "50px", paddingTop: "50px"}} class="description">Подборка самых популярных товаров от поставщиков в этом месяце. Заказы напрямую, мелким и крупным оптом, с доставкой по всей России.</h2>
+
+
       {productCreator()}
 
+      <h1 class="custom-colored-h1">Компании месяца</h1>
+      <h2 style = {{width: "80%", margin: "0 auto", paddingBottom: "50px", paddingTop: "50px"}} class="description">Подборка самых популярных компаний в этом месяце.</h2>
+
+
       {products !== undefined ? (
-        products.map((val) => 
-        {
-          var rows = [];
-          for (var i = 0; i < Math.ceil(products.length/3); i++) {
-            
-            rows.push(
-            <div
-              class="center-in"
-              style={{
-                width: "100%",
-                display: "flex",
-                flexWrap: "wrap",
-                justifyContent: "center",
-              }}
-            >
+        products.map(
+          (val) => {
+            var rows = [];
+            for (var i = 0; i < Math.ceil(products.length / 3); i++) {
+              rows.push(
+                <div
+                  class="center-in"
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                  }}
+                >
                   <div
                     style={{
                       width: "25%",
@@ -159,14 +182,18 @@ const HomePage = () => {
                         margin: "0 auto",
                         resizeMode: "cover",
                       }}
-                      src={products[i*3].images[0].url}
+                      src={products[i * 3].images[0].url}
                     />
-                    <h2 style={{ textAlign: "center" }}>{products[i*3].productName}</h2>
-                  </div> </div>)
-          
-          
-      } return rows }
-        /*
+                    <h2 style={{ textAlign: "center" }}>
+                      {products[i * 3].productName}
+                    </h2>
+                  </div>{" "}
+                </div>
+              );
+            }
+            return rows;
+          }
+          /*
         <div
               class="center-in"
               style={{
@@ -197,7 +224,11 @@ const HomePage = () => {
                     <h2 style={{ textAlign: "center" }}>{val.productName}</h2>
                   </div>
             </div>)):<></>}
-            */)):<></>}
+            */
+        )
+      ) : (
+        <></>
+      )}
 
       <footer>
         <div

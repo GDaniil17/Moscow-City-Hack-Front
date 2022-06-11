@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import "typeface-roboto";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import SimpleReactLightbox from 'simple-react-lightbox';
