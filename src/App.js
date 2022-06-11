@@ -3,7 +3,6 @@ import ToDoList from './ToDoList';
 import { v4 as uuidv4 } from 'uuid';
 import logo from './imgs/logo.jpg';
 import "./App.css";
-import "./123.css"
 import ReactElasticCarousel from 'react-elastic-carousel';
 import Item from './Item';
 import Navbar from 'react-bootstrap/Navbar';

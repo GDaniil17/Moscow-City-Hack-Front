@@ -1,5 +1,3 @@
-import React, { PureComponent } from 'react';
-import picture from './imgs/sc.jpg';
 import styled from 'styled-components';
 import "./App.css";
 
