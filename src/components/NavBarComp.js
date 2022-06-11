@@ -21,9 +21,9 @@ export default function NavBarComp() {
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              <Nav.Link href="#action1">Главная</Nav.Link>
-              <Nav.Link href="#action2">Товары</Nav.Link>
-              <Nav.Link href="#action2">Личный кабинет</Nav.Link>
+              <Nav.Link href="/">Главная</Nav.Link>
+              <Nav.Link href="/product">Товары</Nav.Link>
+              <Nav.Link href="/lc">Личный кабинет</Nav.Link>
             </Nav>
             <Form className="d-flex">
               <FormControl
@@ -32,7 +32,7 @@ export default function NavBarComp() {
                 className="me-2"
                 aria-label="Search"
               />
-              <Button variant="outline-success">Искать</Button>
+              <Button variant="outline-success" onClick={(e) => console.log("Search button clicked")}>Искать</Button>
             </Form>
           </Navbar.Collapse>
         </Container>
