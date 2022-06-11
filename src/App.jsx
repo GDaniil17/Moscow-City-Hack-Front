@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavBarComp from "./components/NavBarComp";
@@ -36,6 +36,9 @@ function App() {
             <Route exact path="/product">
               <ProductPage />
             </Route>
+            <Route path="/test">
+            
+          </Route>
           </Switch>
         </div>
       </div>

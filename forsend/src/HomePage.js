@@ -9,22 +9,19 @@ const HomePage = () => {
   const [products, setProducts] = useState([]);
   const url = `http://213.178.155.140:4201/api/products/productsByCompany?id=4&count=100`;
   useEffect(() => {
+    
     const getData = async () => {
       fetch(url)
-        .then((res) => {
-          return res.ok
-            ? res.json()
-            : res.json().then((err) => Promise.reject(err));
-        })
-        .then((data) => {
-          console.log(data);
-          return data;
-        })
-        .then(setProducts)
-        .catch(() => alert("Во время загрузки данных произошла ошибка:("));
-    };
+      .then((res) => {return res.ok ? res.json() : res.json().then((err)=>Promise.reject(err))})
+      .then((data) => {
+        console.log(data)
+        return data
+      })
+      .then(setProducts)
+      .catch(() => alert("Во время загрузки данных произошла ошибка:("))
+    }
     getData();
-    console.log(products);
+    console.log(products)
   }, []);
 
   const breakPoints = [
@@ -119,6 +116,8 @@ const HomePage = () => {
       </>
     );
   }
+  
+
 
   return (
     <>
@@ -127,77 +126,7 @@ const HomePage = () => {
       {itemCreator()}
       {productCreator()}
 
-      {products !== undefined ? (
-        products.map((val) => 
-        {
-          var rows = [];
-          for (var i = 0; i < Math.ceil(products.length/3); i++) {
-            
-            rows.push(
-            <div
-              class="center-in"
-              style={{
-                width: "100%",
-                display: "flex",
-                flexWrap: "wrap",
-                justifyContent: "center",
-              }}
-            >
-                  <div
-                    style={{
-                      width: "25%",
-                      height: "25%",
-                      margin: "0 15px",
-                    }}
-                  >
-                    <img
-                      alt={uuidv4()}
-                      style={{
-                        width: "100%  ",
-                        height: "100%",
-                        display: "block",
-                        margin: "0 auto",
-                        resizeMode: "cover",
-                      }}
-                      src={products[i*3].images[0].url}
-                    />
-                    <h2 style={{ textAlign: "center" }}>{products[i*3].productName}</h2>
-                  </div> </div>)
-          
-          
-      } return rows }
-        /*
-        <div
-              class="center-in"
-              style={{
-                width: "100%",
-                display: "flex",
-                flexWrap: "wrap",
-                justifyContent: "center",
-              }}
-            >
-                  <div
-                    style={{
-                      width: "25%",
-                      height: "25%",
-                      margin: "0 15px",
-                    }}
-                  >
-                    <img
-                      alt={uuidv4()}
-                      style={{
-                        width: "100%  ",
-                        height: "100%",
-                        display: "block",
-                        margin: "0 auto",
-                        resizeMode: "cover",
-                      }}
-                      src={val.images[0].url}
-                    />
-                    <h2 style={{ textAlign: "center" }}>{val.productName}</h2>
-                  </div>
-            </div>)):<></>}
-            */)):<></>}
+      {products !== undefined ? products.map((val) =><li>{val.productName}</li>) : <h1>1</h1>}
 
       <footer>
         <div
