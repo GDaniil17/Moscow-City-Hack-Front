@@ -47,15 +47,7 @@ const ProductPage = () => {
   return (
     <div style={{ marginBottom: "20px", marginTop: "20px" }}>
       {console.log("Here me!!!")}
-      <Row
-        style={{
-          maxWidth: "90%",
-          margin: "0 auto",
-          marginTop: "10px",
-          marginBottom: "10px",
-        }}
-        xs={2}
-      >
+      <Row style={{ maxWidth: "90%", margin: "0 auto", marginTop: "10px", marginBottom: "10px" }} xs={2}>
         {products.slice(0, newProducts).map((i) => {
           let picture_url = "";
           if (i.images !== null && i.images[0] !== undefined) {
@@ -101,15 +93,15 @@ const ProductPage = () => {
         })}
       </Row>
       <Button
-        key="nextbutton"
-        className="next-button"
-        style={{
-          matgin: "0 auto",
-          marginTop: "20px",
-          width: "300px",
-          height: "50px",
-          fontSize: "25px",
-        }}
+          key="nextbutton"
+          className="next-button"
+          style={{
+            matgin: "0 auto",
+            marginTop: "20px",
+            width: "300px",
+            height: "50px",
+            fontSize: "25px",
+          }}
         onClick={(e) => {
           showMoreProducts();
         }}
