@@ -9,14 +9,6 @@ import "./components/NavBarComp.css";
 import { motion } from "framer-motion";
 import "./HomePage.css";
 import {
-  Card,
-  CardImg,
-  CardText,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  Button,
-  Container,
   Row,
   Col,
 } from "react-bootstrap";
@@ -139,10 +131,11 @@ const HomePage = () => {
         id="msp"
         src={msp}
         style={{
-          width: "80%",
+          width: "90%",
           height: "100%",
           display: "block",
           margin: "0 auto",
+          padding: "25px",
           resizeMode: "cover",
         }}
         alt=""
@@ -191,19 +184,23 @@ const HomePage = () => {
           dragConstraints={{ right: 0, left: -width }}
           className="inner-carousel"
         >
-          {productUrls.map((image) => {
+          {productUrls.map((image, i) => {
             return (
               <motion.div
                 className="item-carousel"
                 style={{
-                  height: "100%",
+                  height: "90%",
                   background: "rgb(214, 205, 205)",
-                  margin: "20px",
+                  margin: "0 15px",
                   borderRadius: "2rem",
                 }}
               >
-                <img alt={uuidv4()} src={image} style={{ padding: "0" }} />
-                <h2 style={{ margin: "20px", overflow: "hidden" }}>{image}</h2>
+                <img alt={uuidv4()} src={image} style={{ padding: "0",
+                  minHeight: "200px", 
+                  width: "200px",
+                  imageRendering: "crisp-edges", margin: "0 auto" }} />
+                <h2 style={{ margin: "20px", overflow: "hidden" }}>{productTag[i]}</h2>
+                <p className="text" style={{ margin: "20px", overflow: "hidden", maxHeight: "100%" }}>{productTag[i].concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i])}</p>
               </motion.div>
             );
           })}
@@ -225,7 +222,7 @@ const HomePage = () => {
         Подборка самых популярных компаний в этом месяце.
       </h2>
 
-      {products !== undefined ? showProducts() : <></>}
+      
       {/*products.map(
           (val) => {
             
