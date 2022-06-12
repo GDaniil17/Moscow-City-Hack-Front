@@ -25,7 +25,7 @@ const ProductPage = () => {
     if (fetching) {
       const getData = async () => {
         fetch(
-          `http://84.252.138.236:4201/api/products/productsByQuery?count=${31}&offset=0`
+          `http://84.252.138.236:4201/api/products/productsByQuery?count=${1200}&offset=0`
         )
           .then((res) => {
             return res.ok
@@ -60,15 +60,21 @@ const ProductPage = () => {
               "https://kinesiotaping.ru/wp-content/plugins/ht-mega-for-elementor/assets/images/image-placeholder.png";
           }
           return (
-            <Col key={i.id} style={{ width: "30%", margin: "0 auto" }}>
+            <a href={i.url} style={{ width: "30%", margin: "0 auto" }}>
+            <Col key={i.id} >
               <img
                 src={picture_url}
                 style={{
                   width: "100%",
                   display: "block",
                   margin: "0 auto",
+                  
+                  width: 375,
+                  height: 375,
+                  overflow: "hidden",
+                  borderWidth: 3,
                 }}
-                alt="Card image cap"
+                alt={picture_url}
               />
               <h2
                 style={{
@@ -78,6 +84,7 @@ const ProductPage = () => {
                 {i.productName}
               </h2>
             </Col>
+            </a>
           );
         })}
       </Row>
