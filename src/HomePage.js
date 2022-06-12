@@ -9,9 +9,17 @@ import "./components/NavBarComp.css";
 import { motion } from "framer-motion";
 import "./HomePage.css";
 import {
-  Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button, Container, Row, Col
-} from 'react-bootstrap';
+  Card,
+  CardImg,
+  CardText,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  Button,
+  Container,
+  Row,
+  Col,
+} from "react-bootstrap";
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
@@ -86,89 +94,27 @@ const HomePage = () => {
   }
 
   function showProducts() {
-    var rows = [];
-    for (var i = 0; i < Math.ceil(products.length / 3); i++) {
-      if(i > 3) {
-        break;
-      }
-      rows.push(
-        <div
-          class="center-in"
-          style={{
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <div
-            style={{
-              width: "25%",
-              height: "25%",
-              margin: "0 15px",
-            }}
-          >
-            <img
-              alt={uuidv4()}
-              style={{
-                width: "100%  ",
-                height: "100%",
-                display: "block",
-                margin: "0 auto",
-                resizeMode: "cover",
-              }}
-              src={products[i * 3].images[0].url}
-            />
-            <h2 style={{ textAlign: "center" }}>
-              {products[i * 3].productName}
-            </h2>
-          </div>{" "}
-        </div>
-      );
-    }
-    return <motion.div >{rows}</motion.div>;
-  }
-
-  function productCreator() {
     return (
-      <>
-        {Array(10)
-          .fill(1)
-          .map((el, i) => (
-            <div
-              class="center-in"
-              style={{
-                width: "100%",
-                display: "flex",
-                flexWrap: "wrap",
-                justifyContent: "center",
-              }}
-            >
-              {Array(3)
-                .fill(1)
-                .map((el, i) => (
-                  <div
-                    style={{
-                      width: "25%",
-                      height: "25%",
-                      margin: "0 15px",
-                    }}
-                  >
-                    <img
-                      alt={i}
-                      style={{
-                        width: "100%  ",
-                        height: "100%",
-                        display: "block",
-                        margin: "0 auto",
-                        resizeMode: "cover",
-                      }}
-                      src={productUrls[i]}
-                    />
-                    <h2 style={{ textAlign: "center" }}>{productTag[i]}</h2>
-                  </div>
-                ))}
-            </div>
-          ))}
-      </>
+      <Row style={{maxWidth:"90%", margin: "0 auto",}} xs={2}>
+        {[...Array(products.length)].map((e, i) => {
+          console.log(products[i].images[0].url, i);
+          return (
+            <Col style={{width:"30%", margin: "0 auto",}}>
+              <img
+                src={products[i].images[0].url}
+                style={{
+                  width: "100%",
+                  display: "block",
+                  margin: "0 auto",
+                }}
+                alt="Card image cap"
+              />
+              <h2 style ={{
+      overflow: "hidden"}}>{products[i].productName}</h2>
+            </Col>
+          );
+        })}
+      </Row>
     );
   }
   const images = [
@@ -247,15 +193,17 @@ const HomePage = () => {
         >
           {productUrls.map((image) => {
             return (
-              <motion.div className="item-carousel" style={{height: "100%",background:"rgb(214, 205, 205)",margin:"20px", 
-              borderRadius: "2rem"}}>
-                <img
-                      alt={uuidv4()}
-                      src={image}
-                      style={{padding:"0"}}
-                    />
-                    <h2 style={{margin:"20px", 
-    overflow: "hidden"}}>{image}</h2>
+              <motion.div
+                className="item-carousel"
+                style={{
+                  height: "100%",
+                  background: "rgb(214, 205, 205)",
+                  margin: "20px",
+                  borderRadius: "2rem",
+                }}
+              >
+                <img alt={uuidv4()} src={image} style={{ padding: "0" }} />
+                <h2 style={{ margin: "20px", overflow: "hidden" }}>{image}</h2>
               </motion.div>
             );
           })}
@@ -277,10 +225,8 @@ const HomePage = () => {
         Подборка самых популярных компаний в этом месяце.
       </h2>
 
-      {products !== undefined ? 
-        showProducts():<></>}
-      {
-        /*products.map(
+      {products !== undefined ? showProducts() : <></>}
+      {/*products.map(
           (val) => {
             
           
@@ -328,7 +274,7 @@ const HomePage = () => {
           />
 
           <p
-            style={{ margin: "0 15px", color: "black"}}
+            style={{ margin: "0 15px", color: "black" }}
             class="text-sm text-gray-400 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4"
           >
             Copyright © 2022 Moscow City Hack — All rights reserved
