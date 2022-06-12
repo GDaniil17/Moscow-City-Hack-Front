@@ -16,6 +16,7 @@
     "react-elastic-carousel": "^0.11.5",
     "react-grid-system": "^8.1.5",
     "react-icons": "^4.4.0",
+    "react-phone-number-input": "^3.2.2",
     "react-request": "^3.2.0",
     "react-router-dom": "^5.3.3",
     "react-scripts": "^2.1.3",

@@ -27,7 +27,7 @@ export default function NavBarComp() {
         <Container fluid>
           <Navbar.Brand
             style={{ fontSize: "24px", width: "20%", margin: "0 10px" }}
-            href="#"
+            href="/"
           >
             МСП
           </Navbar.Brand>

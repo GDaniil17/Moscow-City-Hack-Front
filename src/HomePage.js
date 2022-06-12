@@ -8,10 +8,8 @@ import msp from "./imgs/msp.png";
 import "./components/NavBarComp.css";
 import { motion } from "framer-motion";
 import "./HomePage.css";
-import {
-  Row,
-  Col,
-} from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
+import { Button } from "rsuite";
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
@@ -87,11 +85,11 @@ const HomePage = () => {
 
   function showProducts() {
     return (
-      <Row style={{maxWidth:"90%", margin: "0 auto",}} xs={2}>
+      <Row style={{ maxWidth: "90%", margin: "0 auto" }} xs={2}>
         {[...Array(products.length)].map((e, i) => {
           console.log(products[i].images[0].url, i);
           return (
-            <Col style={{width:"30%", margin: "0 auto",}}>
+            <Col style={{ width: "30%", margin: "0 auto" }}>
               <img
                 src={products[i].images[0].url}
                 style={{
@@ -101,8 +99,13 @@ const HomePage = () => {
                 }}
                 alt="Card image cap"
               />
-              <h2 style ={{
-      overflow: "hidden"}}>{products[i].productName}</h2>
+              <h2
+                style={{
+                  overflow: "hidden",
+                }}
+              >
+                {products[i].productName}
+              </h2>
             </Col>
           );
         })}
@@ -189,18 +192,52 @@ const HomePage = () => {
               <motion.div
                 className="item-carousel"
                 style={{
+                  display: "flex",
                   height: "90%",
                   background: "rgb(214, 205, 205)",
                   margin: "0 15px",
+                  flexDirection: "column",
                   borderRadius: "2rem",
                 }}
               >
-                <img alt={uuidv4()} src={image} style={{ padding: "0",
-                  minHeight: "200px", 
-                  width: "200px",
-                  imageRendering: "crisp-edges", margin: "0 auto" }} />
-                <h2 style={{ margin: "20px", overflow: "hidden" }}>{productTag[i]}</h2>
-                <p className="text" style={{ margin: "20px", overflow: "hidden", maxHeight: "100%" }}>{productTag[i].concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i]).concat(' ').concat(productTag[i])}</p>
+                <img
+                  alt={uuidv4()}
+                  src={image}
+                  style={{
+                    padding: "0",
+                    minHeight: "200px",
+                    width: "200px",
+                    imageRendering: "crisp-edges",
+                    margin: "0 auto",
+                  }}
+                />
+                <h2 style={{ margin: "0 auto", overflow: "hidden" }}>
+                  {productTag[i]}
+                </h2>
+                <p
+                  className="text"
+                  style={{
+                    margin: "20px",
+                    overflow: "hidden",
+                    maxHeight: "100%",
+                  }}
+                >
+                  {productTag[i]}
+                </p>
+                
+                <Button
+                  key="nextbutton"
+                  className="next-button nav-link"
+                  style={{
+                    marginBottom: "auto",
+                    width: "200px",
+                    height: "auto",
+                    fontSize: "30px",          
+                    color: "#4D70FF"
+                  }}
+                >
+                  Далее
+                </Button>
               </motion.div>
             );
           })}
@@ -222,7 +259,6 @@ const HomePage = () => {
         Подборка самых популярных компаний в этом месяце.
       </h2>
 
-      
       {/*products.map(
           (val) => {
             

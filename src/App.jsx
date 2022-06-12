@@ -5,6 +5,7 @@ import NavBarComp from "./components/NavBarComp";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ProductPage from "./ProductPage";
 import Home from "./Home";
+import Profile from "./Profile";
 
 const LOCAL_STORAGE_KEY = "savedData.data";
 
@@ -36,8 +37,8 @@ function App() {
             <Route exact path="/product">
               <ProductPage />
             </Route>
-            <Route path="/test">
-            
+            <Route path="/profile">
+              <Profile/>
           </Route>
           </Switch>
         </div>

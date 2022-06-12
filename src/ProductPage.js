@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 import { Row, Col } from "react-bootstrap";
 import { Button } from "rsuite";
-import './ProductPage.css';
+import "./ProductPage.css";
 
 const url = [
   "https://images.unsplash.com/photo-1542060748-10c28b62716f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
@@ -14,10 +14,8 @@ const url = [
 
 const ProductPage = () => {
   const [products, setProducts] = useState([]);
-  const [newProducts, showNewProducts] = useState(30)
+  const [newProducts, showNewProducts] = useState(30);
   const [fetching, setFetching] = useState(true);
-  const [currentPage, setCurrentPage] = useState(0);
-  const [isNext, setIsNext] = useState(false);
 
   const showMoreProducts = () => {
     showNewProducts((prevValue) => prevValue + 30);
@@ -27,18 +25,14 @@ const ProductPage = () => {
     if (fetching) {
       const getData = async () => {
         fetch(
-          `http://84.252.138.236:4201/api/products/productsByQuery?count=${7833}&offset=0`
-          /*&offset=${
-            currentPage * 30
-          }`*/
-        ) //get currently needed data
+          `http://84.252.138.236:4201/api/products/productsByQuery?count=${31}&offset=0`
+        )
           .then((res) => {
             return res.ok
               ? res.json()
               : res.json().then((err) => Promise.reject(err));
           })
           .then((data) => {
-            setCurrentPage((prevPage) => prevPage + 1);
             setProducts([...products, ...data.products]);
             return data.products;
           })
@@ -50,9 +44,7 @@ const ProductPage = () => {
   }, [fetching]);
 
   function showProducts() {
-    return (
-      <></>
-    );
+    return <></>;
   }
   //{products !== undefined ? showProducts() : <></>}
   return (
@@ -61,20 +53,14 @@ const ProductPage = () => {
       <Row style={{ maxWidth: "90%", margin: "0 auto" }} xs={2}>
         {products.slice(0, newProducts).map((i) => {
           let picture_url = "";
-          if (
-            i.images !== null &&
-            i.images[0] !== undefined
-          ) {
+          if (i.images !== null && i.images[0] !== undefined) {
             picture_url = i.images[0].url;
           } else {
             picture_url =
               "https://kinesiotaping.ru/wp-content/plugins/ht-mega-for-elementor/assets/images/image-placeholder.png";
           }
           return (
-            <Col
-              key={i.id}
-              style={{ width: "30%", margin: "0 auto" }}
-            >
+            <Col key={i.id} style={{ width: "30%", margin: "0 auto" }}>
               <img
                 src={picture_url}
                 style={{
@@ -96,12 +82,22 @@ const ProductPage = () => {
         })}
       </Row>
       <Button
-        key = "nextbutton"
+        key="nextbutton"
         className="next-button"
-        style = {{matgin: "0 auto", marginTop: "20px", width: "200px", height: "50px", fontSize: "30px"}}
+        style={{
+          matgin: "0 auto",
+          marginTop: "20px",
+          width: "200px",
+          height: "50px",
+          fontSize: "30px",
+        }}
         color="black"
-        onClick={(e) => {showMoreProducts()}}
-      >Далее</Button>
+        onClick={(e) => {
+          showMoreProducts();
+        }}
+      >
+        Далее
+      </Button>
     </div>
   );
 };
