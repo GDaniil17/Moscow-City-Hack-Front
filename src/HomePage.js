@@ -6,6 +6,12 @@ import React, { useState, useRef, useEffect } from "react";
 import APIHelper from "./APIHelper";
 import msp from "./imgs/msp.png";
 import "./components/NavBarComp.css";
+import { motion } from "framer-motion";
+import "./HomePage.css";
+import {
+  Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button, Container, Row, Col
+} from 'react-bootstrap';
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
@@ -69,12 +75,56 @@ const HomePage = () => {
                 key={uuidv4()}
                 style={{ backgroundImage: "url(" + urls[i] + ")" }}
               >
-                <h1 style={{fontSize: "36px"}} class="custom-colored-h1">{names[i]}</h1>
+                <h1 style={{ fontSize: "36px" }} class="custom-colored-h1">
+                  {names[i]}
+                </h1>
               </Item>
             ))}
         </ReactElasticCarousel>
       </div>
     );
+  }
+
+  function showProducts() {
+    var rows = [];
+    for (var i = 0; i < Math.ceil(products.length / 3); i++) {
+      if(i > 3) {
+        break;
+      }
+      rows.push(
+        <div
+          class="center-in"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <div
+            style={{
+              width: "25%",
+              height: "25%",
+              margin: "0 15px",
+            }}
+          >
+            <img
+              alt={uuidv4()}
+              style={{
+                width: "100%  ",
+                height: "100%",
+                display: "block",
+                margin: "0 auto",
+                resizeMode: "cover",
+              }}
+              src={products[i * 3].images[0].url}
+            />
+            <h2 style={{ textAlign: "center" }}>
+              {products[i * 3].productName}
+            </h2>
+          </div>{" "}
+        </div>
+      );
+    }
+    return <motion.div >{rows}</motion.div>;
   }
 
   function productCreator() {
@@ -121,6 +171,21 @@ const HomePage = () => {
       </>
     );
   }
+  const images = [
+    "./imgs/clothes",
+    "./imgs/clothes",
+    "./imgs/clothes",
+    "./imgs/clothes",
+    "./imgs/clothes",
+    "./imgs/clothes",
+    "./imgs/clothes",
+  ];
+  const [width, setWidth] = useState(0);
+  const carousel = useRef();
+
+  useEffect(() => {
+    setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
+  }, []);
 
   return (
     <>
@@ -137,63 +202,88 @@ const HomePage = () => {
         alt=""
       />
       <h1 class="custom-colored-h1">Отрасли промышленности</h1>
-      <h2 style = {{width: "80%", margin: "0 auto", paddingBottom: "50px", paddingTop: "50px"}} class="description">Совокупность предприятий, занятых добычей сырья и топлива; производством энергии и орудий труда; обработкой материалов и продуктов, произведённых в промышленности или в сельском хозяйстве; изготовлением потребительских товаров. В трёхсекторной модели экономики обрабатывающая промышленность составляет вторичный сектор экономики. При этом добывающая промышленность входит в первичный сектор экономики.</h2>
+      <h2
+        style={{
+          width: "80%",
+          margin: "0 auto",
+          paddingBottom: "50px",
+          paddingTop: "50px",
+        }}
+        class="description"
+      >
+        Совокупность предприятий, занятых добычей сырья и топлива; производством
+        энергии и орудий труда; обработкой материалов и продуктов, произведённых
+        в промышленности или в сельском хозяйстве; изготовлением потребительских
+        товаров. В трёхсекторной модели экономики обрабатывающая промышленность
+        составляет вторичный сектор экономики. При этом добывающая
+        промышленность входит в первичный сектор экономики.
+      </h2>
 
       {itemCreator()}
 
       <h1 class="custom-colored-h1">Товары месяца</h1>
-      <h2 style = {{width: "80%", margin: "0 auto", paddingBottom: "50px", paddingTop: "50px"}} class="description">Подборка самых популярных товаров от поставщиков в этом месяце. Заказы напрямую, мелким и крупным оптом, с доставкой по всей России.</h2>
+      <h2
+        style={{
+          width: "80%",
+          margin: "0 auto",
+          paddingBottom: "50px",
+          paddingTop: "50px",
+        }}
+        class="description"
+      >
+        Подборка самых популярных товаров от поставщиков в этом месяце. Заказы
+        напрямую, мелким и крупным оптом, с доставкой по всей России.
+      </h2>
 
+      <motion.div
+        ref={carousel}
+        className="carousel"
+        whileTap={{ cursor: "grabbing" }}
+      >
+        <motion.div
+          drag="x"
+          dragConstraints={{ right: 0, left: -width }}
+          className="inner-carousel"
+        >
+          {productUrls.map((image) => {
+            return (
+              <motion.div className="item-carousel" style={{height: "100%",background:"rgb(214, 205, 205)",margin:"20px", 
+              borderRadius: "2rem"}}>
+                <img
+                      alt={uuidv4()}
+                      src={image}
+                      style={{padding:"0"}}
+                    />
+                    <h2 style={{margin:"20px", 
+    overflow: "hidden"}}>{image}</h2>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+      </motion.div>
 
-      {productCreator()}
+      {/*productCreator()*/}
 
       <h1 class="custom-colored-h1">Компании месяца</h1>
-      <h2 style = {{width: "80%", margin: "0 auto", paddingBottom: "50px", paddingTop: "50px"}} class="description">Подборка самых популярных компаний в этом месяце.</h2>
+      <h2
+        style={{
+          width: "80%",
+          margin: "0 auto",
+          paddingBottom: "50px",
+          paddingTop: "50px",
+        }}
+        class="description"
+      >
+        Подборка самых популярных компаний в этом месяце.
+      </h2>
 
-
-      {products !== undefined ? (
-        products.map(
+      {products !== undefined ? 
+        showProducts():<></>}
+      {
+        /*products.map(
           (val) => {
-            var rows = [];
-            for (var i = 0; i < Math.ceil(products.length / 3); i++) {
-              rows.push(
-                <div
-                  class="center-in"
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    flexWrap: "wrap",
-                    justifyContent: "center",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "25%",
-                      height: "25%",
-                      margin: "0 15px",
-                    }}
-                  >
-                    <img
-                      alt={uuidv4()}
-                      style={{
-                        width: "100%  ",
-                        height: "100%",
-                        display: "block",
-                        margin: "0 auto",
-                        resizeMode: "cover",
-                      }}
-                      src={products[i * 3].images[0].url}
-                    />
-                    <h2 style={{ textAlign: "center" }}>
-                      {products[i * 3].productName}
-                    </h2>
-                  </div>{" "}
-                </div>
-              );
-            }
-            return rows;
-          }
-          /*
+            
+          
         <div
               class="center-in"
               style={{
@@ -224,11 +314,7 @@ const HomePage = () => {
                     <h2 style={{ textAlign: "center" }}>{val.productName}</h2>
                   </div>
             </div>)):<></>}
-            */
-        )
-      ) : (
-        <></>
-      )}
+                    */}
 
       <footer>
         <div
@@ -242,7 +328,7 @@ const HomePage = () => {
           />
 
           <p
-            style={{ margin: "0 15px" }}
+            style={{ margin: "0 15px", color: "black"}}
             class="text-sm text-gray-400 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4"
           >
             Copyright © 2022 Moscow City Hack — All rights reserved

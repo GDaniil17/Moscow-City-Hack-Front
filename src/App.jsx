@@ -12,7 +12,7 @@ function App() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    document.body.style.backgroundColor = "#b0d3dd";
+    document.body.style.backgroundColor = "#fcfeff";
   }, []);
 
   useEffect(() => {

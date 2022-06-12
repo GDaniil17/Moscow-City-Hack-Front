@@ -4,18 +4,33 @@ import {
   Nav,
   Form,
   FormControl,
-  Button,
   Container,
+  Image,
 } from "react-bootstrap";
 import "./NavBarComp.css";
-import { BsSearch } from "react-icons/bs";
+import { Button } from "rsuite";
 
 export default function NavBarComp() {
   return (
     <div>
-      <Navbar bg="#4C6FFF" variant={"dark"} expand="lg" style={{background: "#4C6FFF",fontSize: "20px", fontFamily: "Nunito",color:"white",}}>
+      <Navbar
+        bg="#4C6FFF"
+        variant={"dark"}
+        expand="lg"
+        style={{
+          background: "#4C6FFF",
+          fontSize: "20px",
+          fontFamily: "Nunito",
+          color: "white",
+        }}
+      >
         <Container fluid>
-          <Navbar.Brand href="#">МСП</Navbar.Brand>
+          <Navbar.Brand
+            style={{ fontSize: "24px", width: "20%", margin: "0 10px" }}
+            href="#"
+          >
+            МСП
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
@@ -23,20 +38,48 @@ export default function NavBarComp() {
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              <Nav.Link href="/">Главная</Nav.Link>
-              <Nav.Link href="/">Компании</Nav.Link>
-              <Nav.Link href="/product">Товары</Nav.Link>
-              <Nav.Link href="/">О нас</Nav.Link>
+              <Nav.Link className="nav-link" href="/">
+                Главная
+              </Nav.Link>
+              <Nav.Link className="nav-link" href="/">
+                Компании
+              </Nav.Link>
+              <Nav.Link className="nav-link" href="/product">
+                Товары
+              </Nav.Link>
+              <Nav.Link className="nav-link" href="/">
+                О нас
+              </Nav.Link>
             </Nav>
-            <Form className="d-flex">
+            <a href='/product'>
+              <Image style={{ margin: "0 15px" }} src={require("./cart.png")} />
+            </a>
+            <Form
+              style={{ backgroundColor: "white" }}
+              className="d-flex search-button"
+            >
+              <Button
+                style={{ border: "0px" }}
+                color="white"
+                className="search-button"
+                variant="outline-success"
+                onClick={(e) => console.log("Search button clicked")}
+              ></Button>
               <FormControl
                 type="search"
                 placeholder="Поиск"
-                className="me-2"
-
+                style={{ border: "0px" }}
                 aria-label="Search"
               />
-              <Button className = "search-button" variant="outline-success" onClick={(e) => console.log("Search button clicked")}>🔍</Button>
+              <Button
+                style={{ border: "0px" }}
+                color="white"
+                className="search-button"
+                variant="outline-success"
+                onClick={(e) => console.log("Search button clicked")}
+              >
+                <Image src={require("./zoom-lens.png")} />
+              </Button>
             </Form>
           </Navbar.Collapse>
         </Container>
