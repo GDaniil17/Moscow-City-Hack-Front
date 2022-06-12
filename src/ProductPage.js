@@ -1,7 +1,5 @@
-import React, { Component, useState, useEffect } from "react";
-import { SRLWrapper } from "simple-react-lightbox";
+import React, { useState, useEffect } from "react";
 import "./App.css";
-import Images from "./Images";
 import { Row, Col } from "react-bootstrap";
 
 const url = [
@@ -13,36 +11,84 @@ const url = [
 ];
 
 const ProductPage = () => {
+  //const url = `http://84.252.138.236:4201/api/products/productsByCompany?count=${100}&offset=${0}`;
   const [products, setProducts] = useState([]);
-  const url = `http://213.178.155.140:4201/api/products/productsByCompany?id=4&count=100`;
+  const [fetching, setFetching] = useState(true);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalCount, setTotalCount] = useState(100);
+
   useEffect(() => {
-    const getData = async () => {
-      fetch(url)
-        .then((res) => {
-          return res.ok
-            ? res.json()
-            : res.json().then((err) => Promise.reject(err));
-        })
-        .then((data) => {
-          console.log(data);
-          return data;
-        })
-        .then(setProducts)
-        .catch(() => alert("Во время загрузки данных произошла ошибка:("));
+    document.addEventListener("scroll", scrollHandler);
+
+    return function () {
+      document.removeEventListener("scroll", scrollHandler);
     };
-    getData();
-    console.log(products);
   }, []);
 
+  const scrollHandler = (e) => {
+    // Handle the end of the current page position
+    if (
+      e.target.documentElement.scrollHeight -
+        (e.target.documentElement.scrollTop + window.innerHeight) <
+        100 &&
+      products.length < totalCount
+    ) {
+      setFetching(true);
+    }
+  };
+  useEffect(() => {
+    if (fetching) {
+      const getData = async () => {
+        fetch(
+          `http://84.252.138.236:4201/api/products/productsByQuery?count=${30}&offset=${
+            currentPage * 30
+          }`
+        ) //get currently needed data
+          .then((res) => {
+            return res.ok
+              ? res.json()
+              : res.json().then((err) => Promise.reject(err));
+          })
+          .then((data) => {
+            setCurrentPage((prevPage) => prevPage + 1);
+            setProducts([...products, ...data.products]);
+            setTotalCount(data.totalProjects);
+            return data.products;
+          })
+          .catch(() => alert("Во время загрузки данных произошла ошибка:("))
+          .finally(setFetching(false));
+      };
+      if (products.length <= 30 * (currentPage)) {
+        getData();
+      }
+    }
+  }, [fetching]);
+
   function showProducts() {
+    console.log("!!!", products.length, (currentPage)*30);
+    if (products.length >= 30*(currentPage)) {
     return (
       <Row style={{ maxWidth: "90%", margin: "0 auto" }} xs={2}>
-        {[...Array(products.length)].map((e, i) => {
-          console.log(products[i].images[0].url, i);
+        {[...Array(Math.min(products.length))].map((e, i) => {
+          //products.length)].map((e, i) => {
+          let picture_url = "";
+          if (
+            (currentPage - 1) * 30 + i < products.length &&
+            products[(currentPage - 1) * 30 + i].images !== null &&
+            products[(currentPage - 1) * 30 + i].images[0] !== undefined
+          ) {
+            picture_url = products[(currentPage - 1) * 30 + i].images[0].url;
+          } else {
+            picture_url =
+              "https://kinesiotaping.ru/wp-content/plugins/ht-mega-for-elementor/assets/images/image-placeholder.png";
+          }
           return (
-            <Col style={{ width: "30%", margin: "0 auto" }}>
+            <Col
+              key={products[i].id}
+              style={{ width: "30%", margin: "0 auto" }}
+            >
               <img
-                src={products[i].images[0].url}
+                src={picture_url}
                 style={{
                   width: "100%",
                   display: "block",
@@ -62,8 +108,15 @@ const ProductPage = () => {
         })}
       </Row>
     );
+      }else{
+        return <></>
+      }
   }
-  return <div style = {{marginBottom: "20px", marginTop: "20px"}}>{products !== undefined ? showProducts() : <></>}</div>;
+  return (
+    <div style={{ marginBottom: "20px", marginTop: "20px" }}>
+      {products !== undefined ? showProducts() : <></>}
+    </div>
+  );
 };
 
 /*
