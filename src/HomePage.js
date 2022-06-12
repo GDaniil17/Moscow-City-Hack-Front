@@ -236,7 +236,7 @@ const HomePage = () => {
                     color: "#4D70FF"
                   }}
                 >
-                  Далее
+                  В корзину
                 </Button>
               </motion.div>
             );

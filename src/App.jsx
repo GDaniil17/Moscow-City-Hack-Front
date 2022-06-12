@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ProductPage from "./ProductPage";
 import Home from "./Home";
 import Profile from "./Profile";
+import ProductById from "./ProductById";
+import ProductByIdPage from "./ProductByIdPage";
 
 const LOCAL_STORAGE_KEY = "savedData.data";
 
@@ -29,7 +31,7 @@ function App() {
     <Router>
       <div className="App">
         <div className="content">
-          <NavBarComp/>
+          <NavBarComp />
           <Switch>
             <Route exact path="/">
               <Home />
@@ -38,8 +40,11 @@ function App() {
               <ProductPage />
             </Route>
             <Route path="/profile">
-              <Profile/>
-          </Route>
+              <Profile />
+            </Route>
+            <Route path="/product/:id">
+              <ProductByIdPage />
+            </Route>
           </Switch>
         </div>
       </div>

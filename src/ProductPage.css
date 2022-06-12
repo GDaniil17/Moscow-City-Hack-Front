@@ -1,6 +1,7 @@
 .next-button {
   background-color: rgb(48, 120, 215);
   border-radius: 5px;
+  color:aliceblue;
 }
 .profilePic {
   width: 60%;
@@ -8,6 +9,16 @@
   align-items: center;
   padding: 20px;
 }
+
+.text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
 .profileContainer {
   display: flex;
   margin: 20px;

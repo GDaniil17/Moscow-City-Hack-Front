@@ -1,0 +1,17 @@
+.custom-colored-h1 {
+    margin-top: 100px;
+    color: #4D70FF;
+    font-size: 30px;
+    font-weight: 800;
+    font-family: "Nunito";
+    text-align: "center";
+  }
+  
+  .custom-description {
+    margin-top: 100px;
+    color: black;
+    font-size: 24px;
+    font-weight: 500;
+    font-family: "Nunito";
+    text-align: "center";
+  }

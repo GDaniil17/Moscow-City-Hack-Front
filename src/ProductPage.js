@@ -43,14 +43,19 @@ const ProductPage = () => {
     }
   }, [fetching]);
 
-  function showProducts() {
-    return <></>;
-  }
   //{products !== undefined ? showProducts() : <></>}
   return (
     <div style={{ marginBottom: "20px", marginTop: "20px" }}>
       {console.log("Here me!!!")}
-      <Row style={{ maxWidth: "90%", margin: "0 auto" }} xs={2}>
+      <Row
+        style={{
+          maxWidth: "90%",
+          margin: "0 auto",
+          marginTop: "10px",
+          marginBottom: "10px",
+        }}
+        xs={2}
+      >
         {products.slice(0, newProducts).map((i) => {
           let picture_url = "";
           if (i.images !== null && i.images[0] !== undefined) {
@@ -61,29 +66,36 @@ const ProductPage = () => {
           }
           return (
             <a href={i.url} style={{ width: "30%", margin: "0 auto" }}>
-            <Col key={i.id} >
-              <img
-                src={picture_url}
-                style={{
-                  width: "100%",
-                  display: "block",
-                  margin: "0 auto",
-                  
-                  width: 375,
-                  height: 375,
-                  overflow: "hidden",
-                  borderWidth: 3,
-                }}
-                alt={picture_url}
-              />
-              <h2
-                style={{
-                  overflow: "hidden",
-                }}
-              >
-                {i.productName}
-              </h2>
-            </Col>
+              <Col key={i.id}>
+                <div
+                  style={{
+                    display: "flex",
+                    width: "100%",
+                    background: "rgb(255, 255, 255)",
+                    margin: "0 15px",
+                    marginBottom: "15px",
+                    flexDirection: "column",
+                    borderRadius: "2rem",
+                    mozBoxShadow: "0 0 3px #ccc",
+                    webkitBoxShadow: "0 0 3px #ccc",
+                    boxShadow: "0 0 10px #ccc",
+                  }}
+                >
+                  <img
+                    alt={i.productName}
+                    key={picture_url}
+                    src={picture_url}
+                    style={{
+                      padding: "0",
+                      minHeight: "200px",
+                      width: "200px",
+                      imageRendering: "crisp-edges",
+                      margin: "0 auto",
+                    }}
+                  />
+                  <h2 className="text">{i.productName}</h2>
+                </div>
+              </Col>
             </a>
           );
         })}
@@ -94,11 +106,10 @@ const ProductPage = () => {
         style={{
           matgin: "0 auto",
           marginTop: "20px",
-          width: "200px",
+          width: "300px",
           height: "50px",
-          fontSize: "30px",
+          fontSize: "25px",
         }}
-        color="black"
         onClick={(e) => {
           showMoreProducts();
         }}
