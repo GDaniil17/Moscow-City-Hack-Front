@@ -13,7 +13,7 @@ import { Button } from "rsuite";
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
-  const url = `http://213.178.155.140:4201/api/products/productsByCompany?id=4&count=100`;
+  const url = `http://84.252.138.236:4201/api/products/productsByCompany?id=13&count=3`;
   useEffect(() => {
     const getData = async () => {
       fetch(url)
@@ -24,7 +24,7 @@ const HomePage = () => {
         })
         .then((data) => {
           console.log(data);
-          return data;
+          return data.products;
         })
         .then(setProducts)
         .catch(() => alert("Во время загрузки данных произошла ошибка:("));
@@ -162,6 +162,7 @@ const HomePage = () => {
       </h2>
 
       {itemCreator()}
+     
 
       <h1 class="custom-colored-h1">Товары месяца</h1>
       <h2
@@ -187,8 +188,9 @@ const HomePage = () => {
           dragConstraints={{ right: 0, left: -width }}
           className="inner-carousel"
         >
-          {productUrls.map((image, i) => {
+          {products.map((image, i) => {
             return (
+              <a href={`/product/${products[i].id}`}>
               <motion.div
                 className="item-carousel"
                 style={{
@@ -207,7 +209,7 @@ const HomePage = () => {
               >
                 <img
                   alt={uuidv4()}
-                  src={image}
+                  src={products[i].images[0].url}
                   style={{
                     padding: "0",
                     minHeight: "50px",
@@ -218,7 +220,7 @@ const HomePage = () => {
                   }}
                 />
                 <h2 style={{ margin: "0 auto", overflow: "hidden" }}>
-                  {productTag[i]}
+                  {products[i].productName}
                 </h2>
                 <p
                   className="text"
@@ -227,7 +229,7 @@ const HomePage = () => {
                     overflow: "hidden",
                   }}
                 >
-                  {productTag[i]}
+                  {products[i].productName}
                 </p>
 
                 <Button
@@ -245,9 +247,11 @@ const HomePage = () => {
                   В корзину
                 </Button>
               </motion.div>
+              </a>
             );
           })}
         </motion.div>
+      
       </motion.div>
 
       {/*productCreator()*/}
