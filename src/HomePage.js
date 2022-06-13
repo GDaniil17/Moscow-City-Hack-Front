@@ -13,7 +13,7 @@ import { Button } from "rsuite";
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
-  const url = `http://84.252.138.236:4201/api/products/productsByCompany?id=13&count=3`;
+  const url = `http://84.252.138.236:4201/api/products/productsByCompany?id=13&count=10`;
   useEffect(() => {
     const getData = async () => {
       fetch(url)
@@ -50,17 +50,6 @@ const HomePage = () => {
 
   const names = ["Одежда", "Строительство", "Техника", "Книги", "Автомобили"];
 
-  const productTag = [
-    "Очки 200 рублей",
-    "Настольная лампа 500 рублей",
-    "Куртка 1500 рублей",
-  ];
-
-  const productUrls = [
-    "https://images.unsplash.com/photo-1574258495973-f010dfbb5371?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    "https://images.unsplash.com/photo-1517991104123-1d56a6e81ed9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-    "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=436&q=80",
-  ];
 
   function itemCreator() {
     return (
