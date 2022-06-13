@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Row, Col, Form, Button } from "react-bootstrap";
-import PossibleProducts from "./PossibleProducts";
+import PossibleProducts from "./PossibleProduct";
 import "./ProductByIdPage.css";
 
 const ProductByIdPage = () => {
@@ -10,6 +10,7 @@ const ProductByIdPage = () => {
 
   useEffect(() => {
     const getData = async () => {
+        console.log("id!!! ", id);
       fetch(`http://84.252.138.236:4201/api/products/getById?Id=${id}`)
         .then((res) => {
           return res.ok
@@ -139,7 +140,7 @@ const ProductByIdPage = () => {
           </div>
         </div>
       </Col>
-    <PossibleProducts {...id} />
+        <PossibleProducts {...[id]}/>
     </div>
   );
 };
