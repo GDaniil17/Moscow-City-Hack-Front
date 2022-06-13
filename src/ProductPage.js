@@ -35,7 +35,7 @@ function ProductPage() {
       <input
         style={{ width: "30%", height: "25px", borderRadius: "6px", padding: "10px", fontSize: "20px" }}
         type="text"
-        placeholder="Search..."
+        placeholder="Поиск..."
         onChange={(e) => setSearchTitle(e.target.value)}
       />
       <Row
