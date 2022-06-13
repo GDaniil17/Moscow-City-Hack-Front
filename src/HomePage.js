@@ -162,7 +162,6 @@ const HomePage = () => {
       </h2>
 
       {itemCreator()}
-     
 
       <h1 class="custom-colored-h1">Товары месяца</h1>
       <h2
@@ -181,16 +180,16 @@ const HomePage = () => {
       <motion.div
         ref={carousel}
         className="carousel"
-        whileTap={{ cursor: "grabbing" }}
+        
       >
         <motion.div
           drag="x"
           dragConstraints={{ right: 0, left: -width }}
           className="inner-carousel"
+          whileTap={{ cursor: "grabbing" }}
         >
           {products.map((image, i) => {
             return (
-              <a href={`/product/${products[i].id}`}>
               <motion.div
                 className="item-carousel"
                 style={{
@@ -207,51 +206,38 @@ const HomePage = () => {
                   boxShadow: "0 0 10px #ccc",
                 }}
               >
-                <img
-                  alt={uuidv4()}
-                  src={products[i].images[0].url}
-                  style={{
-                    padding: "0",
-                    minHeight: "50px",
-                    height: "auto",
-                    width: "400px",
-                    imageRendering: "crisp-edges",
-                    margin: "0 auto",
-                  }}
-                />
-                <h2 style={{ margin: "0 auto", overflow: "hidden" }}>
+                <a href={`/product/${products[i].id}`}>
+                  <img
+                    alt={uuidv4()}
+                    src={products[i].images[0].url}
+                    style={{
+                      padding: "0",
+                      minHeight: "50px",
+                      height: "auto",
+                      width: "400px",
+                      imageRendering: "crisp-edges",
+                      margin: "0 auto",
+                    }}
+                  />
+                </a>
+                <h2
+                  className="text custom-colored-h1"
+                  style={{ margin: "0 auto", overflow: "hidden" }}
+                >
                   {products[i].productName}
                 </h2>
                 <p
-                  className="text"
+                  className="text custom-colored-h1"
                   style={{
+                    fontSize: "18px",
                     margin: "20px",
                     overflow: "hidden",
                   }}
-                >
-                  {products[i].productName}
-                </p>
-
-                <Button
-                  key="nextbutton"
-                  className="next-button nav-link"
-                  style={{
-                    display: "flex",
-                    marginBottom: "auto",
-                    width: "200px",
-                    height: "auto",
-                    fontSize: "30px",
-                    color: "#4D70FF",
-                  }}
-                >
-                  В корзину
-                </Button>
+                >{products[i].productName}</p>
               </motion.div>
-              </a>
             );
           })}
         </motion.div>
-      
       </motion.div>
 
       {/*productCreator()*/}

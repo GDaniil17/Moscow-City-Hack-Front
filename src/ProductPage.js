@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
-import {  Form,
-  Row,
-  Col,
-  FormControl,
-  Container,
-  Image,
-} from "react-bootstrap";
+import { Form, Row, Col, FormControl, Container, Image, Button } from "react-bootstrap";
 
 function ProductPage() {
   const [loading, setLoading] = useState(false);
@@ -19,7 +13,7 @@ function ProductPage() {
       setLoading(true);
       console.log(searchTitle);
       const response = await axios.get(
-        `http://84.252.138.236:4201/api/products/productsByQuery?query=${searchTitle}&count=${10}`
+        `http://84.252.138.236:4201/api/products/productsByQuery?query=${searchTitle}&count=${12}`
       );
       console.log(response.data);
       setPosts(response.data);
@@ -31,9 +25,16 @@ function ProductPage() {
 
   return (
     <div className="App">
-      <h3>Поиск по смыслу</h3>
+      <h3 className="text custom-colored-h1">Поиск</h3>
       <input
-        style={{ width: "30%", height: "25px", borderRadius: "6px", padding: "10px", fontSize: "20px" }}
+        style={{
+          width: "30%",
+          height: "25px",
+          borderRadius: "6px",
+          padding: "20px",
+          fontSize: "20px",
+          margin: "10px"
+        }}
         type="text"
         placeholder="Поиск..."
         onChange={(e) => setSearchTitle(e.target.value)}
@@ -45,49 +46,60 @@ function ProductPage() {
           marginTop: "10px",
           marginBottom: "10px",
         }}
-        xs={2}
+        xs={3}
       >
-      {loading ? (
-        <h4>Загрузка ...</h4>
-      ) : (
-        posts.map((item) => {
-          return (
+        {loading ? (
+          <h4 className="text custom-colored-h1">Загрузка ...</h4>
+        ) : (
+          posts.map((item) => {
+            return (
+                <Col key={item.id}>
+                  <div
+                    style={{
+                      display: "flex",
+                      padding: "10px",
+                      width: "100%",
+                      background: "rgb(255, 255, 255)",
+                      margin: "0 15px",
+                      marginBottom: "15px",
+                      flexDirection: "column",
+                      borderRadius: "2rem",
+                      mozBoxShadow: "0 0 3px #ccc",
+                      webkitBoxShadow: "0 0 3px #ccc",
+                      boxShadow: "0 0 10px #ccc",
+                    }}
+                  >
+                    
               <a href={`/product/${item.id}`}>
-<             Col key={item.id}>
-                <div
-                  style={{
-                    display: "flex",
-                    width: "100%",
-                    background: "rgb(255, 255, 255)",
-                    margin: "0 15px",
-                    marginBottom: "15px",
-                    flexDirection: "column",
-                    borderRadius: "2rem",
-                    mozBoxShadow: "0 0 3px #ccc",
-                    webkitBoxShadow: "0 0 3px #ccc",
-                    boxShadow: "0 0 10px #ccc",
-                  }}
-                >
-                <img
-                  alt={item.productName}
-                  key={item.url}
-                  src={item.images[0].url}
-                  style={{
-                    padding: "0",
-                    minHeight: "200px",
-                    width: "200px",
-                    imageRendering: "crisp-edges",
-                    margin: "0 auto",
-                  }}
-                />
+                    <img
+                      alt={item.productName}
+                      key={item.url}
+                      src={item.images[0].url}
+                      style={{
+                        padding: "0",
+                        minHeight: "200px",
+                        width: "200px",
+                        imageRendering: "crisp-edges",
+                        margin: "0 auto",
+                      }}
+                    />
+                    </a>
 
-                <h2 className="text">{item.productName}</h2>
-                </div>
-              </Col>
-              </a>
-          );
-        })
-      )}
+                    <h2
+                      style={{
+                        textDecoration: "none",
+                        cursor: "pointer",
+                        overflow: "hidden"
+                      }}
+                      className="text custom-colored-h1"
+                    >
+                      {item.productName}
+                    </h2>
+                  </div>
+                </Col>
+            );
+          })
+        )}
       </Row>
     </div>
   );
@@ -150,7 +162,7 @@ const ProductPage = () => {
           })
           .catch(() => alert("Во время загрузки данных произошла ошибка:("))
           .finally(setFetching(false));
-          *//*
+          */ /*
         }
       getData();
   }, []);

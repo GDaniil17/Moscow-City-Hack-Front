@@ -63,21 +63,6 @@ export default function NavBarComp() {
                 variant="outline-success"
                 onClick={(e) => console.log("Search button clicked")}
               ></Button>
-              <FormControl
-                type="search"
-                placeholder="Поиск"
-                style={{ border: "0px" }}
-                aria-label="Search"
-              />
-              <Button
-                style={{ border: "0px" }}
-                color="white"
-                className="search-button"
-                variant="outline-success"
-                onClick={(e) => console.log("Search button clicked")}
-              >
-                <Image src={require("./zoom-lens.png")} />
-              </Button>
             </Form>
             <a>
               <Image style={{ margin: "0 15px" }} src={require("./market.svg")} />
