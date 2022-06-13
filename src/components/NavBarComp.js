@@ -51,9 +51,7 @@ export default function NavBarComp() {
                 О нас
               </Nav.Link>
             </Nav>
-            <a href='/product'>
-              <Image style={{ margin: "0 15px" }} src={require("./cart.png")} />
-            </a>
+
             <Form
               style={{ backgroundColor: "white" }}
               className="d-flex search-button"
@@ -81,6 +79,12 @@ export default function NavBarComp() {
                 <Image src={require("./zoom-lens.png")} />
               </Button>
             </Form>
+            <a href='/product'>
+              <Image style={{ margin: "0 15px" }} src={require("./market.svg")} />
+            </a>
+            <a href='/product'>
+              <Image style={{ margin: "0 15px" }} src={require("./Notification.svg")} />
+            </a>
           </Navbar.Collapse>
         </Container>
       </Navbar>
