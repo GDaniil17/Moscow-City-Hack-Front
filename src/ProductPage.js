@@ -31,9 +31,9 @@ function ProductPage() {
 
   return (
     <div className="App">
-      <h3>Search Filter</h3>
+      <h3>Поиск по смыслу</h3>
       <input
-        style={{ width: "30%", height: "25px" }}
+        style={{ width: "30%", height: "25px", borderRadius: "6px", padding: "10px", fontSize: "20px" }}
         type="text"
         placeholder="Search..."
         onChange={(e) => setSearchTitle(e.target.value)}
@@ -48,7 +48,7 @@ function ProductPage() {
         xs={2}
       >
       {loading ? (
-        <h4>Loading ...</h4>
+        <h4>Загрузка ...</h4>
       ) : (
         posts.map((item) => {
           return (
