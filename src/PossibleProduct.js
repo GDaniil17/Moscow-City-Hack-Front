@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useParams } from "react";
 import { Button, Row, Col } from "react-bootstrap";
+import "./PossibleProduct.css";
 
-function PossibleProduct (id) {
+function PossibleProduct(id) {
   const [products, setProducts] = useState([]);
   const [newProducts, showNewProducts] = useState(6);
   const [fetching, setFetching] = useState(true);
@@ -13,11 +14,17 @@ function PossibleProduct (id) {
   useEffect(() => {
     if (fetching) {
       const getData = async () => {
-        console.log("id??? ", parseInt(id[0], 10));
         console.log(
-          `http://84.252.138.236:4201/api/products/simularProducts?productId=${parseInt(id[0], 10)}&count=${30}`)
+          `http://84.252.138.236:4201/api/products/simularProducts?productId=${parseInt(
+            id[0],
+            10
+          )}&count=${30}`
+        );
         fetch(
-          `http://84.252.138.236:4201/api/products/simularProducts?productId=${parseInt(id[0], 10)}&count=${30}`
+          `http://84.252.138.236:4201/api/products/simularProducts?productId=${parseInt(
+            id[0],
+            10
+          )}&count=${30}`
         )
           .then((res) => {
             return res.ok
@@ -62,22 +69,22 @@ function PossibleProduct (id) {
               "https://kinesiotaping.ru/wp-content/plugins/ht-mega-for-elementor/assets/images/image-placeholder.png";
           }
           return (
-            <a href={i.id} style={{ width: "30%", margin: "0 auto" }}>
-              <Col key={i.id}>
-                <div
-                  style={{
-                    display: "flex",
-                    width: "100%",
-                    background: "rgb(255, 255, 255)",
-                    margin: "0 15px",
-                    marginBottom: "15px",
-                    flexDirection: "column",
-                    borderRadius: "2rem",
-                    mozBoxShadow: "0 0 3px #ccc",
-                    webkitBoxShadow: "0 0 3px #ccc",
-                    boxShadow: "0 0 10px #ccc",
-                  }}
-                >
+            <Col key={i.id}>
+              <div
+                style={{
+                  display: "flex",
+                  width: "100%",
+                  background: "rgb(255, 255, 255)",
+                  margin: "0 15px",
+                  marginBottom: "15px",
+                  flexDirection: "column",
+                  borderRadius: "2rem",
+                  mozBoxShadow: "0 0 3px #ccc",
+                  webkitBoxShadow: "0 0 3px #ccc",
+                  boxShadow: "0 0 10px #ccc",
+                }}
+              >
+                <a href={i.id} style={{ width: "30%", margin: "0 auto" }}>
                   <img
                     alt={i.productName}
                     key={picture_url}
@@ -93,10 +100,15 @@ function PossibleProduct (id) {
                       imageRendering: "crisp-edges",
                     }}
                   />
-                  <h2 className="text">{i.productName}</h2>
-                </div>
-              </Col>
-            </a>
+                </a>
+                <h2 
+                  className="text custom-colored-h1"
+                  style={{
+                    margin: "20px",
+                    overflow: "hidden",
+                  }}>{i.productName}</h2>
+              </div>
+            </Col>
           );
         })}
       </Row>
@@ -118,6 +130,6 @@ function PossibleProduct (id) {
       </Button>
     </div>
   );
-};
+}
 
 export default PossibleProduct;
