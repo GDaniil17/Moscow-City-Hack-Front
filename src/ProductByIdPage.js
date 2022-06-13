@@ -99,22 +99,44 @@ const ProductByIdPage = () => {
           />
 
           <h2 className="custom-colored-h1">{getName()}</h2>
+          <div>
+            <a href={getProductUrl()}>
+              <Button
+                key="CallSeller"
+                className="next-button"
+                style={{
+                  matgin: "0 auto",
+                  marginTop: "20px",
+                  width: "300px",
+                  height: "50px",
+                  fontSize: "20px",
+                  fontWeight: "bold",
+                }}
+              >
+                Связаться с продавцом
+              </Button>
+            </a>
 
-          <a href={getProductUrl()}>
             <Button
               key="CallSeller"
-              className="next-button"
+              className="cart-button"
               style={{
+                background: "white",
+                color: "#4D70FF",
+                marginLeft: "10px",
                 matgin: "0 auto",
                 marginTop: "20px",
                 width: "300px",
                 height: "50px",
-                fontSize: "25px",
+                fontSize: "20px",
+                border: "2px #4D70FF",
+                fontWeight: "bold",
+                borderColor: "black"
               }}
             >
-              Связаться с продавцом
+              В корзину
             </Button>
-          </a>
+          </div>
         </div>
       </Col>
     </div>

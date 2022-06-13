@@ -192,12 +192,17 @@ const HomePage = () => {
               <motion.div
                 className="item-carousel"
                 style={{
+                  padding: "20px",
                   display: "flex",
-                  height: "90%",
-                  background: "rgb(214, 205, 205)",
+                  height: "auto",
                   margin: "0 15px",
+                  marginTop: "15px",
+                  marginBottom: "15px",
                   flexDirection: "column",
                   borderRadius: "2rem",
+                  mozBoxShadow: "0 0 3px #ccc",
+                  webkitBoxShadow: "0 0 3px #ccc",
+                  boxShadow: "0 0 10px #ccc",
                 }}
               >
                 <img
@@ -205,8 +210,9 @@ const HomePage = () => {
                   src={image}
                   style={{
                     padding: "0",
-                    minHeight: "200px",
-                    width: "200px",
+                    minHeight: "50px",
+                    height: "auto",
+                    width: "400px",
                     imageRendering: "crisp-edges",
                     margin: "0 auto",
                   }}
@@ -219,21 +225,21 @@ const HomePage = () => {
                   style={{
                     margin: "20px",
                     overflow: "hidden",
-                    maxHeight: "100%",
                   }}
                 >
                   {productTag[i]}
                 </p>
-                
+
                 <Button
                   key="nextbutton"
                   className="next-button nav-link"
                   style={{
+                    display: "flex",
                     marginBottom: "auto",
                     width: "200px",
                     height: "auto",
-                    fontSize: "30px",          
-                    color: "#4D70FF"
+                    fontSize: "30px",
+                    color: "#4D70FF",
                   }}
                 >
                   В корзину
