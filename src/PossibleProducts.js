@@ -14,7 +14,7 @@ export default function PossibleProducts() {
       if (fetching) {
         const getData = async () => {
           fetch(
-            `hhttp://84.252.138.236:4201/api/products?count=${1200}&offset=0`
+            `http://84.252.138.236:4201/api/products?count=${1000}&offset=0`
           )
             .then((res) => {
               return res.ok

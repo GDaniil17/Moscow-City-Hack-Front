@@ -19,7 +19,7 @@ function ProductPage() {
       setLoading(true);
       console.log(searchTitle);
       const response = await axios.get(
-        `http://84.252.138.236:4201/api/products/productsByQuery?query=${searchTitle}`
+        `http://84.252.138.236:4201/api/products/productsByQuery?query=${searchTitle}&count=${10}`
       );
       console.log(response.data);
       setPosts(response.data);

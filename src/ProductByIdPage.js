@@ -139,9 +139,9 @@ const ProductByIdPage = () => {
           </div>
         </div>
       </Col>
+    <PossibleProducts {...id} />
     </div>
   );
 };
-//<PossibleProducts />
 
 export default ProductByIdPage;
