@@ -54,6 +54,7 @@ function ProductPage() {
           posts.map((item) => {
             return (
                 <Col key={item.id}>
+                    <a href={`/product/${item.id}`}>
                   <div
                     style={{
                       display: "flex",
@@ -70,7 +71,7 @@ function ProductPage() {
                     }}
                   >
                     
-              <a href={`/product/${item.id}`}>
+            
                     <img
                       alt={item.productName}
                       key={item.url}
@@ -83,7 +84,7 @@ function ProductPage() {
                         margin: "0 auto",
                       }}
                     />
-                    </a>
+                    
 
                     <h2
                       style={{
@@ -96,6 +97,7 @@ function ProductPage() {
                       {item.productName}
                     </h2>
                   </div>
+                  </a>
                 </Col>
             );
           })

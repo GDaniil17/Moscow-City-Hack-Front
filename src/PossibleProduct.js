@@ -70,6 +70,7 @@ function PossibleProduct(id) {
           }
           return (
             <Col key={i.id}>
+             <a href={i.id} style={{ width: "30%", margin: "0 auto" }}>
               <div
                 style={{
                   display: "flex",
@@ -84,7 +85,7 @@ function PossibleProduct(id) {
                   boxShadow: "0 0 10px #ccc",
                 }}
               >
-                <a href={i.id} style={{ width: "30%", margin: "0 auto" }}>
+    
                   <img
                     alt={i.productName}
                     key={picture_url}
@@ -100,7 +101,7 @@ function PossibleProduct(id) {
                       imageRendering: "crisp-edges",
                     }}
                   />
-                </a>
+              
                 <h2 
                   className="text custom-colored-h1"
                   style={{
@@ -108,9 +109,11 @@ function PossibleProduct(id) {
                     overflow: "hidden",
                   }}>{i.productName}</h2>
               </div>
+              </a>
             </Col>
           );
         })}
+        
       </Row>
       <Button
         key="nextbutton"
