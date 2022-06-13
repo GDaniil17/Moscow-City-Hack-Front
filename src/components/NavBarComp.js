@@ -41,13 +41,13 @@ export default function NavBarComp() {
               <Nav.Link className="nav-link" href="/">
                 Главная
               </Nav.Link>
-              <Nav.Link className="nav-link" href="/">
+              <Nav.Link className="nav-link" href="/companies">
                 Компании
               </Nav.Link>
               <Nav.Link className="nav-link" href="/product">
                 Товары
               </Nav.Link>
-              <Nav.Link className="nav-link" href="/">
+              <Nav.Link className="nav-link" href="/about">
                 О нас
               </Nav.Link>
             </Nav>

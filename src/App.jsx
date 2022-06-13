@@ -9,6 +9,7 @@ import Profile from "./Profile";
 import ProductById from "./ProductById";
 import ProductByIdPage from "./ProductByIdPage";
 import PossibleProducts from "./PossibleProduct";
+import AboutUs from "./AboutUs";
 
 const LOCAL_STORAGE_KEY = "savedData.data";
 
@@ -44,6 +45,9 @@ function App() {
               <Profile />
             </Route>
             <Route path="/product/:id" render={(props) => <><ProductByIdPage {...props} /> </>}/>
+            <Route exact path="/about">
+              <AboutUs/>
+            </Route>
           </Switch>
         </div>
       </div>
