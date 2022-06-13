@@ -1,8 +1,74 @@
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import axios from "axios";
+
+function ProductPage() {
+  const [loading, setLoading] = useState(false);
+  const [posts, setPosts] = useState([]);
+  const [searchTitle, setSearchTitle] = useState("продукты");
+
+  useEffect(() => {
+    const loadPosts = async () => {
+      setLoading(true);
+      console.log(searchTitle);
+      const response = await axios.get(
+        `http://84.252.138.236:4201/api/products/productsByQuery?query=${searchTitle}`
+      );
+      console.log(response.data);
+      setPosts(response.data);
+      setLoading(false);
+    };
+
+    loadPosts();
+  }, [searchTitle]);
+
+  return (
+    <div className="App">
+      <h3>Search Filter</h3>
+      <input
+        style={{ width: "30%", height: "25px" }}
+        type="text"
+        placeholder="Search..."
+        onChange={(e) => setSearchTitle(e.target.value)}
+      />
+      {loading ? (
+        <h4>Loading ...</h4>
+      ) : (
+        posts
+          .map((item) => {
+            return (
+              <div>
+                <img
+                      alt={item.productName}
+                      key={item.url}
+                      src={item.images[0].url}
+                      style={{
+                        padding: "0",
+                        minHeight: "200px",
+                        width: "200px",
+                        imageRendering: "crisp-edges",
+                        margin: "0 auto",
+                      }}
+                    />
+                    
+                <h2 className="text">{item.productName}</h2>
+              </div> )
+          }
+          )
+      )
+        }
+      </div>
+  )
+}
+
+export default ProductPage;
+/*
 import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 import { Row, Col } from "react-bootstrap";
 import { Button } from "rsuite";
 import "./ProductPage.css";
+import axios from 'axios';
 import {
   Navbar,
   Nav,
@@ -15,20 +81,25 @@ import {
 const ProductPage = () => {
   const [products, setProducts] = useState([]);
   const [newProducts, showNewProducts] = useState(30);
-  const [fetching, setFetching] = useState(true);
-  const [search, setSearch] = useState('');
+  const [fetching, setFetching] = useState(false);
+  const [search, setSearch] = useState('продукты');
 
   const showMoreProducts = () => {
     showNewProducts((prevValue) => prevValue + 30);
   };
 
   useEffect(() => {
-    if (fetching) {
-      let url = search === '' ? 'http://84.252.138.236:4201/api/products/productsByQuery?query=${123}':
+    const getData = async () => {
+      setFetching(true)
+      let url = search === '' ? `http://84.252.138.236:4201/api/products/productsByQuery?query=${search}`:
       `http://84.252.138.236:4201/api/products?count=${1200}&offset=0`; 
       //|search;
-      
+      const response = await axios.get(url);
+      setProducts(response.data);
+      setFetching(false)
+      /*
       const getData = async () => {
+        setFetching(true);
         fetch(url)
           .then((res) => {
             return res.ok
@@ -47,10 +118,10 @@ const ProductPage = () => {
           })
           .catch(() => alert("Во время загрузки данных произошла ошибка:("))
           .finally(setFetching(false));
-      };
+          *//*
+        }
       getData();
-    }
-  }, [fetching]);
+  }, []);
 
   function searchFunction () {
     setSearch();
@@ -104,6 +175,7 @@ const ProductPage = () => {
         }}
         xs={2}
       >
+
         {products.slice(0, newProducts).map((i) => {
           let picture_url = "";
           if (i.images !== null && i.images[0] !== undefined) {
@@ -169,3 +241,4 @@ const ProductPage = () => {
 };
 
 export default ProductPage;
+*/
