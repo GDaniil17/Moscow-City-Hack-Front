@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
+import {  Form,
+  Row,
+  Col,
+  FormControl,
+  Container,
+  Image,
+} from "react-bootstrap";
 
 function ProductPage() {
   const [loading, setLoading] = useState(false);
@@ -31,37 +38,62 @@ function ProductPage() {
         placeholder="Search..."
         onChange={(e) => setSearchTitle(e.target.value)}
       />
+      <Row
+        style={{
+          maxWidth: "90%",
+          margin: "0 auto",
+          marginTop: "10px",
+          marginBottom: "10px",
+        }}
+        xs={2}
+      >
       {loading ? (
         <h4>Loading ...</h4>
       ) : (
-        posts
-          .map((item) => {
-            return (
-              <div>
+        posts.map((item) => {
+          return (
+              <a href={`/product/${item.id}`}>
+<             Col key={item.id}>
+                <div
+                  style={{
+                    display: "flex",
+                    width: "100%",
+                    background: "rgb(255, 255, 255)",
+                    margin: "0 15px",
+                    marginBottom: "15px",
+                    flexDirection: "column",
+                    borderRadius: "2rem",
+                    mozBoxShadow: "0 0 3px #ccc",
+                    webkitBoxShadow: "0 0 3px #ccc",
+                    boxShadow: "0 0 10px #ccc",
+                  }}
+                >
                 <img
-                      alt={item.productName}
-                      key={item.url}
-                      src={item.images[0].url}
-                      style={{
-                        padding: "0",
-                        minHeight: "200px",
-                        width: "200px",
-                        imageRendering: "crisp-edges",
-                        margin: "0 auto",
-                      }}
-                    />
-                    
+                  alt={item.productName}
+                  key={item.url}
+                  src={item.images[0].url}
+                  style={{
+                    padding: "0",
+                    minHeight: "200px",
+                    width: "200px",
+                    imageRendering: "crisp-edges",
+                    margin: "0 auto",
+                  }}
+                />
+
                 <h2 className="text">{item.productName}</h2>
-              </div> )
-          }
-          )
-      )
-        }
-      </div>
-  )
+                </div>
+              </Col>
+              </a>
+          );
+        })
+      )}
+      </Row>
+    </div>
+  );
 }
 
-export default ProductPage;
+export default ProductPage; /*
 /*
 import React, { useState, useEffect, useRef } from "react";
 import "./App.css";

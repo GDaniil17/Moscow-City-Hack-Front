@@ -44,64 +44,79 @@ const ProductByIdPage = () => {
 
   function getName() {
     let productName = "";
-    if (
-      products &&
-      products[0].productName !== null
-    ) {
-        productName = products[0].productName
+    if (products && products[0].productName !== null) {
+      productName = products[0].productName;
     }
     return productName;
   }
 
   function getProductUrl() {
     let productUrl = "";
-    if (
-      products &&
-      products[0].url !== null
-    ) {
-        productUrl = products[0].url
+    if (products && products[0].url !== null) {
+      productUrl = products[0].url;
     }
     return productUrl;
-
   }
 
   return (
     <div>
-      <Row>
-        <Row><Col>
+      <Row
+        style={{
+          maxWidth: "90%",
+          margin: "0 auto",
+          marginTop: "10px",
+          marginBottom: "10px",
+        }}
+        xs={2}
+      ></Row>
+      <Col key={getImageUrl()}>
+        <div
+          style={{
+            padding: "20px",
+            display: "flex",
+            width: "100%",
+            background: "rgb(255, 255, 255)",
+            margin: "0 15px",
+            marginBottom: "15px",
+            flexDirection: "column",
+            borderRadius: "2rem",
+            mozBoxShadow: "0 0 3px #ccc",
+            webkitBoxShadow: "0 0 3px #ccc",
+            boxShadow: "0 0 10px #ccc",
+          }}
+        >
           <img
+            alt={getName()}
+            key={getImageUrl()}
             src={getImageUrl()}
             style={{
-              width: "50%",
-              display: "flex",
+              padding: "0",
               minHeight: "200px",
-              width: "300px",
+              width: "200px",
               imageRendering: "crisp-edges",
+              margin: "0 auto",
             }}
-            alt="Card image cap"
           />
-          
-        </Col>
-        <Col>
-        <h1 style = {{display: "flex", marginLeft: "150px"}} className="custom-colored-h1">{getName()}</h1>
-        </Col>
-        </Row>
-        <Col>
-        <a href = {getProductUrl()}>
-        <Button
-          key="CallSeller"
-          className="next-button"
-          style={{
-            matgin: "0 auto",
-            marginTop: "20px",
-            width: "300px",
-            height: "50px",
-            fontSize: "25px",
-          }}>Связаться с продавцом</Button>
+
+          <h2 className="custom-colored-h1">{getName()}</h2>
+
+          <a href={getProductUrl()}>
+            <Button
+              key="CallSeller"
+              className="next-button"
+              style={{
+                matgin: "0 auto",
+                marginTop: "20px",
+                width: "300px",
+                height: "50px",
+                fontSize: "25px",
+              }}
+            >
+              Связаться с продавцом
+            </Button>
           </a>
-        </Col>
-      </Row>
-      <Row />
+        </div>
+      </Col>
     </div>
   );
 };
