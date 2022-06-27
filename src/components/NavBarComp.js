@@ -12,12 +12,13 @@ import { Button } from "rsuite";
 
 export default function NavBarComp() {
   return (
-    <div>
       <Navbar
+        sticky="top"
         bg="#4C6FFF"
         variant={"dark"}
         expand="lg"
         style={{
+          boxShadow: "0 0 100px #ccc",
           background: "#4C6FFF",
           fontSize: "20px",
           fontFamily: "Nunito",
@@ -64,15 +65,30 @@ export default function NavBarComp() {
                 onClick={(e) => console.log("Search button clicked")}
               ></Button>
             </Form>
-            <a>
+            <Button style={{height: "100%",background: "rgba(255, 0, 0, 0)", borderWidth: "0px", position: "relative"}}>
               <Image style={{ margin: "0 15px" }} src={require("./market.svg")} />
-            </a>
+              <div
+                style={{
+                  borderRadius: 15,
+                  color: "white",
+                  width: "1.25rem",
+                  height: "1.25rem",
+                  position: "absolute",
+                  bottom: 0,
+                  right: 0,
+                  transform: "translate(25%, 25%)",
+                  fontSize: "12px",
+                  background: "red"
+                }}>
+                115
+              </div>
+            </Button>
+            
             <a>
               <Image style={{ margin: "0 15px" }} src={require("./Notification.svg")} />
             </a>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-    </div>
   );
 }

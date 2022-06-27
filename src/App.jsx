@@ -10,6 +10,7 @@ import ProductById from "./ProductById";
 import ProductByIdPage from "./ProductByIdPage";
 import PossibleProducts from "./PossibleProduct";
 import AboutUs from "./AboutUs";
+import "bootstrap/dist/css/bootstrap.min.css"
 
 const LOCAL_STORAGE_KEY = "savedData.data";
 

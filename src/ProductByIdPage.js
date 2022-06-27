@@ -75,10 +75,11 @@ const ProductByIdPage = () => {
           style={{
             padding: "20px",
             display: "flex",
-            width: "100%",
             background: "rgb(255, 255, 255)",
-            margin: "0 15px",
+            margin: "0 auto",
             marginBottom: "15px",
+            marginLeft: "20px",
+            marginRight: "20px",
             flexDirection: "column",
             borderRadius: "2rem",
             mozBoxShadow: "0 0 3px #ccc",

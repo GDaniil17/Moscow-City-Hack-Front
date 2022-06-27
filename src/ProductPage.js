@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
-import { Form, Row, Col, FormControl, Container, Image, Button } from "react-bootstrap";
+import { Form, Row, Col, FormControl, Container, Image, Button, Card } from "react-bootstrap";
 
 function ProductPage() {
   const [loading, setLoading] = useState(false);
@@ -72,14 +72,14 @@ function ProductPage() {
                   >
                     
             
-                    <img
+                    <Card.Img
                       alt={item.productName}
                       key={item.url}
                       src={item.images[0].url}
                       style={{
                         padding: "0",
-                        minHeight: "200px",
-                        width: "200px",
+                        height: "200px",
+                        objectFit: "contain",
                         imageRendering: "crisp-edges",
                         margin: "0 auto",
                       }}
@@ -96,6 +96,22 @@ function ProductPage() {
                     >
                       {item.productName}
                     </h2>
+                    <Button
+                      key="CallSeller"
+                      className="next-button"
+                      style={{
+                        matgin: "0 auto",
+                        marginTop: "20px",
+                        width: "50%",
+                        fontSize: "20px",
+                        fontWeight: "bold",
+                        borderRadius: "10px",
+                        marginLeft: "20px",
+                        marginBottom: "20px"
+                      }}
+                    >
+                      В корзину
+                    </Button>
                   </div>
                   </a>
                 </Col>
